@@ -1,0 +1,25 @@
+
+ul li{
+    list-style: none;
+}
+.texto-1{
+    font-size: 1em;
+    padding: 8px;
+    letter-spacing: .1rem; 
+       
+}
+
+.titulo-1{
+    font-size: 2rem;
+}
+
+.titulo-2 {
+    font-size: 1.5rem;
+    padding: 8px 0;
+}
+
+.titulo-3 {
+    font-size: 1.2;
+    font-weight: 700;
+    padding: 8px 0;
+}

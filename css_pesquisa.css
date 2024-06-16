@@ -52,7 +52,7 @@ a{
     margin-bottom: 0px;
 }
 a::after{
-    content: "🔗";
+    content: ":link:";
 }
 
 main{

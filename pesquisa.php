@@ -49,8 +49,8 @@ $categoria = $result_categorias['nome'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página</title>
-    <link rel="stylesheet" href="style.css">
+    <title>entretenimento</title>
+    <link rel="stylesheet" href="css_pesquisa.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
 
@@ -72,29 +72,29 @@ $categoria = $result_categorias['nome'];
             
     </div>
     <main>
-        <h2><?=$nome ?></h2>
-        <h3>Informações brutas</h3>
+        <h2> <?=$nome?></h2>
+        <h3><?= $tipo ?> | <?=$categoria?> |  <?=$duracao?> | <?=$faixa_etaria?></h3>
         <section>
-            <h4>Sobre o filme</h4>
-            <img src="transferir (2).png" alt="Foto de exemplo">
+            <h4>Sobre o filme:</h4>
+            <img src="transferir (2).png" alt="">
             <div class="posicao">
-                <p>Filme: <?=$nome ?></p>
+                <p>Filme: <?=$nome?> </p>
                 <br>
-                <p>Faixa etária: <?=$faixa_etaria ?></p>
+                <p>Faixa etária: <?=$faixa_etaria?></p>
                 <br>
                 <p>Duração: <?=$duracao?></p>
                 <br>
-                <p>Diretor: <?=$diretor?> </p>
+                <p>Diretor: <?=$diretor?></p>
                 <br>
                 <p>Lançamento: <?=$lancamento?></p>
                 <br>
-                <p>Categoria:<?=$sinopse?> </p>
+                <p>Categoria: <?=$categoria?></p>
                 <br>   
             </div>
         </section>
         <div>
             <h4>Sinopse:</h4>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero iste nihil eos, quaerat quos quam corrupti possimus unde, quisquam voluptates blanditiis at odio vitae nemo fugit placeat rerum veritatis illo.</p>
+            <p> <?=$sinopse?></p>
         </div>
     </main>
     

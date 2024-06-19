@@ -1,3 +1,53 @@
+<?php 
+require_once __DIR__ . '/auxiliares/auxiliar.php';
+$id = $_GET['name'];
+
+$sql = "SELECT * FROM listagem_entretenimentos WHERE `status` = 'ativo' and id = $id";
+
+$query = mysqli_query($conn, $sql);
+
+$result_list = mysqli_fetch_assoc($query);
+
+// INTEGRAÇÃO
+$nome = $result_list['nome'];
+$faixa_etaria = $result_list['faixa_etaria'];
+$duracao = $result_list['duracao'];
+$diretor = $result_list['diretor'];
+$lancamento = $result_list['lancamento'];
+$sinopse = $result_list['sinopse'];
+
+$sql = "SELECT nome FROM tipos_entretenimento WHERE id = $result_list[id_tipo]";
+
+$query = mysqli_query($conn, $sql);
+
+$result_type = mysqli_fetch_assoc($query);
+
+// INTEGRAÇÃO
+$tipo = $result_type['nome'];
+
+// Conexão entre categorias e listagem de entretenimentos
+$sql = "SELECT id_categorias FROM listagem_entretenimentos_connect_categorias WHERE id_listagem_entretenimentos = $id";
+
+$query = mysqli_query($conn, $sql);
+
+$result_conn_cat = mysqli_fetch_assoc($query);
+$id_categoria = $result_conn_cat['id_categorias'];
+
+$sql = "SELECT nome FROM categorias_entretenimento WHERE id = $id_categoria";
+
+$query = mysqli_query($conn, $sql);
+
+$result_categorias = mysqli_fetch_assoc($query);
+
+// INTEGRAÇÃO
+$categoria = $result_categorias['nome'];
+
+
+// INTEGRAÇÃO DA IMAGEM 
+$file = "jpg";
+$imagem = img($nome,$file);
+
+?>
 <!DOCTYPE html>
 <html lang="pt-bt">
     <head>
@@ -35,27 +85,25 @@
                         <div class="card-imagem">
                             <figure class="imagem-filme">
                                 <img class="img-filme"
-                                    src="./imagens/ESTRELAS-ALEM-DO-TEMPO-_2016_-8_6-_Oscar17_1.jpg"
+                                    src="/imagens/$imagem"
                                     alt>
                             </figure>
                         </div>
                         <div class="card-descricao">
                             <div class="card-sobre">
-                                <h1 class="titulo-2">Estrelas Almém do
-                                    Tempo</h1>
-                                <p>14 | 02:07:00 | Filme | Ação</p>
+                                <h1 class="titulo-2"><?=$nome?></h1>
+                                <p><?=$faixa_etaria?> | <?=$duracao?> | <?=$tipo?> | <?=$categoria?></p>
                                 <div class="card-title">
                                     <div class="filme">
                                         <p class="titulo-3"
                                             lass="titulo-3">Sobre o Filme.</p>
                                         <ul>
-                                            <li>Filme: Estrelas Além do
-                                                Tempo</li>
-                                            <li>Faixa etária: 14 </li>
-                                            <li>Duração: 02:04:00</li>
-                                            <li>Diretor: Theodore Melfi</li>
-                                            <li>Lançamento: 2016</li>
-                                            <li>Categoria: Ação</li>
+                                            <li>Filme: <?= $nome?></li>
+                                            <li>Faixa etária:<?= $faixa_etaria?></li>
+                                            <li>Duração: <?= $duracao?></li>
+                                            <li>Diretor: <?= $diretor?></li>
+                                            <li>Lançamento: <?= $lancamento?></li>
+                                            <li>Categoria: <?= $categoria?></li>
                                         </ul>
                                         <p class="titulo-3">Avaliações: </p>
                                     </div>
@@ -117,26 +165,7 @@
                         <div class="titulo-1"><p>Sinopse:</p></div>
                         <div class>
                             <p class="texto-1">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Cum perferendis
-                                expedita sint nihil commodi aut a
-                                doloremque minus explicabo, deleniti
-                                deserunt iure. Dicta, quis, earum quasi
-                                eligendi libero deserunt ab nostrum
-                                voluptatibus explicabo dolorum officiis
-                                neque voluptates quae reiciendis maxime
-                                distinctio eos. Animi deserunt dicta
-                                facere ab quasi ipsum vero reiciendis
-                                tempora? Rerum qui amet, voluptate
-                                reiciendis iure sit? Aspernatur impedit
-                                ipsum inventore deserunt, deleniti
-                                obcaecati dolor quidem est ullam
-                                distinctio ex numquam quos consectetur
-                                totam quae veritatis modi ab tempora,
-                                quod voluptas ipsam quam assumenda?
-                                Doloremque amet, quas accusantium vitae
-                                asperiores tempore alias rerum. Modi
-                                molestiae hic nihil saepe.
+                            <?= $sinopse?>
                             </p>
                         </div>
                     </div>

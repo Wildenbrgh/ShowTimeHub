@@ -46,7 +46,7 @@ $count_ent = mysqli_num_rows($query);
          
         <nav>
       <div class="nav-wrapper">
-        <form action="pesquisa.php" method="get">
+        <form action="entretenimentos.php" method="get">
           <div>
               <div class="valign-wrapper center-align" class="row">
                   <div class="valign" class="row">

@@ -69,7 +69,7 @@ $imagem = img($nome,$file);
             </header>
             <nav class="nav">
                 <ul>
-                    <li><a href="#" title="Home">Home</a></li>  
+                    <li><a href="index1.php" title="Home">Home</a></li>  
                     <li><a href="#" title="Quem Somos">Quem Somos</a></li>
                     <li><a href="#" title="Serviços">Filmes</a></li>
                     <li><a href="#" title="Serviços">Séries</a></li>

@@ -8,7 +8,7 @@ define('DB_NAME', 'entretenimentos');
 
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-function img(string $product_name, string $file_type): string{
+function img(string $product_name, string $file_type, string $path): string{
     $not_accent = array(
         'Š'=>'S', 'š'=>'s', 'Ð'=>'Dj','Â'=>'Z', 'Â'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A',
         'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E', 'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I',
@@ -24,5 +24,5 @@ function img(string $product_name, string $file_type): string{
     $product_lower = strtolower($product_name_nc);
     $format_name = str_replace(" ", "-", $product_lower);
     $name = $format_name . "." . $file_type;
-    return $name;
+    return $path . $name;
 }

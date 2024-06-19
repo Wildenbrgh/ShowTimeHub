@@ -4,7 +4,11 @@ $id = $_GET['name'];
 
 $sql = "SELECT * FROM listagem_entretenimentos WHERE `status` = 'ativo' and id = $id";
 
-$query = mysqli_query($conn, $sql);
+try {
+    $query = mysqli_query($conn, $sql);
+} catch(Exception $e) {
+    header("Location: index.php");
+}
 
 $result_list = mysqli_fetch_assoc($query);
 
@@ -18,7 +22,11 @@ $sinopse = $result_list['sinopse'];
 
 $sql = "SELECT nome FROM tipos_entretenimento WHERE id = $result_list[id_tipo]";
 
-$query = mysqli_query($conn, $sql);
+try {
+    $query = mysqli_query($conn, $sql);
+} catch(Exception $e) {
+    echo $e;
+}
 
 $result_type = mysqli_fetch_assoc($query);
 
@@ -28,14 +36,22 @@ $tipo = $result_type['nome'];
 // Conexão entre categorias e listagem de entretenimentos
 $sql = "SELECT id_categorias FROM listagem_entretenimentos_connect_categorias WHERE id_listagem_entretenimentos = $id";
 
-$query = mysqli_query($conn, $sql);
+try {
+    $query = mysqli_query($conn, $sql);
+} catch(Exception $e) {
+    echo $e;
+}
 
 $result_conn_cat = mysqli_fetch_assoc($query);
 $id_categoria = $result_conn_cat['id_categorias'];
 
 $sql = "SELECT nome FROM categorias_entretenimento WHERE id = $id_categoria";
 
-$query = mysqli_query($conn, $sql);
+try {
+    $query = mysqli_query($conn, $sql);
+} catch(Exception $e) {
+    echo $e;
+}
 
 $result_categorias = mysqli_fetch_assoc($query);
 
@@ -45,7 +61,8 @@ $categoria = $result_categorias['nome'];
 
 // INTEGRAÇÃO DA IMAGEM 
 $file = "jpg";
-$imagem = img($nome,$file);
+$image_path = "imagens/";
+$imagem = img($nome,$file,$image_path);
 
 ?>
 <!DOCTYPE html>
@@ -69,7 +86,7 @@ $imagem = img($nome,$file);
             </header>
             <nav class="nav">
                 <ul>
-                    <li><a href="index1.php" title="Home">Home</a></li>  
+                    <li><a href="index.php" title="Home">Home</a></li>  
                     <li><a href="#" title="Quem Somos">Quem Somos</a></li>
                     <li><a href="#" title="Serviços">Filmes</a></li>
                     <li><a href="#" title="Serviços">Séries</a></li>
@@ -85,7 +102,7 @@ $imagem = img($nome,$file);
                         <div class="card-imagem">
                             <figure class="imagem-filme">
                                 <img class="img-filme"
-                                    src="/imagens/$imagem"
+                                    src="<?=$imagem?>";
                                     alt>
                             </figure>
                         </div>
